@@ -10,6 +10,7 @@ import { JwtModule } from '@nestjs/jwt';
 // import { PaymentsModule } from './payments/payments.module';
 // import { PaymentMethodModule } from './payment_method/payment_method.module';
 // import { OrdersModule } from './orders/orders.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { JwtModule } from '@nestjs/jwt';
       logging: false,
     }),
     JwtModule,
+    UsersModule,
     // UserModule,
     // CategoryModule,
     // ProductsModule,
