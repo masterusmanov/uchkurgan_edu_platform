@@ -6,7 +6,7 @@ interface OtpAttr {
   otp: string;
   expiration_time: Date;
   verified: boolean;
-  check: string;
+  check: string; //phone
 }
 
 @Table({ tableName: 'otp' })

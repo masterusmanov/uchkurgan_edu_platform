@@ -1,8 +1,8 @@
 import { Column, DataType, Model, Table, HasMany } from 'sequelize-typescript';
-// import { User_wallet } from '../../user_wallet/models/user_wallet.model';
-// import { Stadium } from '../../stadiums/models/stadium.model';
-// import { Comments } from '../../comments/models/comment.model';
-// import { UsersCard } from '../../user_cards/model/user_card.model';
+// import { User_wallet } from "../../user_wallet/models/user_wallet.model";
+// import { Stadium } from "../../stadiums/models/stadium.model";
+// import { Comments } from "../../comments/models/comment.model";
+// import { UsersCard } from "../../user_cards/model/user_card.model";
 
 interface UsersCreationAttrs {
   first_name: string;

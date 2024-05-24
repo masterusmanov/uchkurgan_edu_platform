@@ -7,8 +7,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { TelegrafModule } from 'nestjs-telegraf';
 import { BOT_NAME } from './app.constants';
 import { BotModule } from './bot/bot.module';
-import { UsersModule } from './users/users.module';
-import { Users } from './users/models/user.model';
 import { Bot } from './bot/models/bot.model';
 
 @Module({
@@ -32,12 +30,11 @@ import { Bot } from './bot/models/bot.model';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [Users, Bot],
+      models: [Bot],
       autoLoadModels: true,
       logging: false,
     }),
     JwtModule,
-    UsersModule,
   ],
   providers: [],
   exports: [JwtModule],
