@@ -18,7 +18,7 @@ import { Otp } from '../otp/models/otp.model';
 import { Op } from 'sequelize';
 import { dates, decode, encode } from '../helpers/crypto';
 import { VerifyOtpDto } from './dto/verifyOtp.dto';
-import { FindUserDto } from './dto/find-user.dto';
+// import { FindUserDto } from './dto/find-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -114,30 +114,4 @@ export class UsersService {
       throw new BadRequestException("Bunday foydalanuvchi yo'q");
     }
   }
-
-  async findAll(findUserDto: FindUserDto) {
-    const where = {};
-    if (findUserDto.search) {
-      where['first_name'] = { [Op.like]: `%${findUserDto.search}%` };
-    }
-    if (findUserDto.search) {
-      where['last_name'] = { [Op.like]: `%${findUserDto.search}%` };
-    }
-    if (findUserDto.search) {
-      where['username'] = { [Op.like]: `%${findUserDto.search}%` };
-    }
-    if (findUserDto.search) {
-      where['email'] = { [Op.like]: `%${findUserDto.search}%` };
-    }
-    if (findUserDto.search) {
-      where['phone'] = { [Op.like]: `%${findUserDto.search}%` };
-    }
-    if (findUserDto.search) {
-      where['birthday'] = { [Op.like]: `%${findUserDto.search}%` };
-    }
-    const users = await Users.findAll({ where });
-    if (!users) {
-      throw new BadRequestException('user not found');
-    }
-    return users;
-  }
+ }

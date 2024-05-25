@@ -3,11 +3,13 @@ import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { resolve } from 'path';
-import { JwtModule } from '@nestjs/jwt';
 import { TelegrafModule } from 'nestjs-telegraf';
 import { BOT_NAME } from './app.constants';
 import { BotModule } from './bot/bot.module';
 import { Bot } from './bot/models/bot.model';
+import { Users } from './users/models/user.model';
+import { UsersModule } from './users/users.module';
+import { OtpModule } from './otp/otp.module';
 
 @Module({
   imports: [
@@ -30,13 +32,15 @@ import { Bot } from './bot/models/bot.model';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [Bot],
+      models: [Users, Bot],
       autoLoadModels: true,
       logging: false,
     }),
-    JwtModule,
+    UsersModule,
+    BotModule,
+    OtpModule
   ],
   providers: [],
-  exports: [JwtModule],
+  exports: [],
 })
 export class AppModule {}
