@@ -10,6 +10,7 @@ import { Bot } from './bot/models/bot.model';
 import { Users } from './users/models/user.model';
 import { UsersModule } from './users/users.module';
 import { OtpModule } from './otp/otp.module';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
@@ -38,7 +39,8 @@ import { OtpModule } from './otp/otp.module';
     }),
     UsersModule,
     BotModule,
-    OtpModule
+    OtpModule,
+    CourseModule
   ],
   providers: [],
   exports: [],
