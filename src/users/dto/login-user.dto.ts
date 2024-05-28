@@ -1,23 +1,20 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, IsEmail } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString, IsPhoneNumber } from 'class-validator';
 
+export class LoginUserDto {
+  @ApiProperty({
+    example: '912345678',
+    description: 'Foydalanuvchi telefon raqami',
+  })
+  @IsNotEmpty()
+  @IsPhoneNumber()
+  phone: string;
 
-
-export class LoginUserDto{
-    @ApiProperty({
-        example: 'email@mail.uz',
-        description: 'Foydalanuvchi elektron pochtasi'
-    })
-    @IsEmail()
-    email: string;
-
-    @ApiProperty({
-        example: 'email@mail.P@$$ww00rd',
-        description: 'Foydalanuvchi paroli'
-    })
-    @IsNotEmpty()
-    @IsString()
-    password: string;
-
-
+  @ApiProperty({
+    example: 'email@mail.P@$$ww00rd',
+    description: 'Foydalanuvchi paroli',
+  })
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 }
