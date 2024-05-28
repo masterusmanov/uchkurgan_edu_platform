@@ -4,7 +4,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-// import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Users } from './models/user.model';
 import { JwtService } from '@nestjs/jwt';
@@ -18,7 +18,8 @@ import { Otp } from '../otp/models/otp.model';
 import { Op } from 'sequelize';
 import { dates, decode, encode } from '../helpers/crypto';
 import { VerifyOtpDto } from './dto/verifyOtp.dto';
-// import { FindUserDto } from './dto/find-user.dto';
+import { FilesService } from '../files/files.service';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -27,6 +28,7 @@ export class UsersService {
     @InjectModel(Otp) private otpRepo: typeof Otp,
     private readonly jwtService: JwtService,
     private readonly botService: BotService,
+    private readonly fileService: FilesService,
   ) {}
 
   async newOTP(phoneUserDto: PhoneUserDto) {
@@ -114,4 +116,29 @@ export class UsersService {
       throw new BadRequestException("Bunday foydalanuvchi yo'q");
     }
   }
- }
+
+  async create(createUserDto: CreateUserDto, user_photo: any) {
+    const fileName = await this.fileService.createFile(user_photo);
+    const post = await this.userRepo.create({
+      ...createUserDto,
+      user_photo: fileName,
+    });
+    return post;
+  }
+
+  async findAll() {
+    const posts = await this.userRepo.findAll({ include: { all: true } });
+    return posts;
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    return await this.userRepo.update(updateUserDto, {
+      where: { id },
+      returning: true,
+    });
+  }
+
+  async remove(id: number) {
+    return await this.userRepo.destroy({ where: { id } });
+  }
+}

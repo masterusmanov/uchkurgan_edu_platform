@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { BotModule } from '../bot/bot.module';
 import { OtpModule } from '../otp/otp.module';
 import { Otp } from '../otp/models/otp.model';
+import { FilesModule } from 'src/files/files.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { Otp } from '../otp/models/otp.model';
     JwtModule.register({}),
     BotModule,
     OtpModule,
+    FilesModule,
   ],
   controllers: [UsersController],
   providers: [UsersService],

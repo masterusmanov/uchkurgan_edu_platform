@@ -5,6 +5,7 @@ import { Course } from 'src/course/models/course.model';
 interface UsersCreationAttrs {
   first_name: string;
   last_name: string;
+  user_photo: string;
   phone: string;
   password: string;
   is_owner: boolean;
@@ -31,6 +32,11 @@ export class Users extends Model<Users, UsersCreationAttrs> {
     allowNull: false,
   })
   last_name: string;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  user_photo: string;
 
   @Column({
     type: DataType.STRING,
