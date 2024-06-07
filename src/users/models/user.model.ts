@@ -1,5 +1,5 @@
 import { Column, DataType, Model, Table, HasMany } from 'sequelize-typescript';
-import { Course } from 'src/course/models/course.model';
+// import { Course } from 'src/course/models/course.model';
 
 
 interface UsersCreationAttrs {
@@ -61,6 +61,6 @@ export class Users extends Model<Users, UsersCreationAttrs> {
   })
   is_active: boolean;
 
-  @HasMany(() => Course)
-  course: Course;
+  // @HasMany(() => Course)
+  // course: Course;
 }

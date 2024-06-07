@@ -11,6 +11,8 @@ import { Users } from './users/models/user.model';
 import { UsersModule } from './users/users.module';
 import { OtpModule } from './otp/otp.module';
 import { CourseModule } from './course/course.module';
+import { CoursePaymentModule } from './course_payment/course_payment.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -40,7 +42,9 @@ import { CourseModule } from './course/course.module';
     UsersModule,
     BotModule,
     OtpModule,
-    CourseModule
+    CourseModule,
+    CoursePaymentModule,
+    TasksModule
   ],
   providers: [],
   exports: [],
