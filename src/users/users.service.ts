@@ -38,6 +38,8 @@ export class UsersService {
       lowerCaseAlphabets: false,
       specialChars: false,
     });
+    console.log(otp);
+
     const isSend = await this.botService.sendOTP(phone_number, otp);
     if (!isSend) {
       throw new HttpException(
