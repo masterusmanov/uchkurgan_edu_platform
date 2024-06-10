@@ -1,26 +1,41 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { Course } from './models/course.model';
+import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
 export class CourseService {
-  create(createCourseDto: CreateCourseDto) {
-    return 'This action adds a new course';
+  constructor(@InjectModel(Course) private courseRepo: typeof Course) {}
+
+  async create(createCourseDto: CreateCourseDto) {
+    const neworder = await this.courseRepo.create(createCourseDto);
+    return neworder;
   }
 
-  findAll() {
-    return `This action returns all course`;
+  async findAll() {
+    const allorders = await this.courseRepo.findAll({ include: { all: true } });
+    return allorders;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} course`;
+  async findOne(id: number) {
+    const oneorder = await this.courseRepo.findOne({ where: { id } });
+    return oneorder;
   }
 
-  update(id: number, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+  async update(id: number, updateCourseDto: UpdateCourseDto) {
+    const upcourse = await this.courseRepo.update(updateCourseDto, {
+      where: { id },
+      returning: true,
+    });
+    return upcourse;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} course`;
+  async remove(id: number) {
+    const removecourse = this.courseRepo.destroy({ where: { id } });
+    if (!removecourse) {
+      throw new HttpException('Kurs mavjud emas', HttpStatus.NOT_FOUND);
+    }
+    return { message: "Kurs o'chirildi" };
   }
 }
