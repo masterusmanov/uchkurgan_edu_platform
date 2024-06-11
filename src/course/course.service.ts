@@ -3,14 +3,22 @@ import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { Course } from './models/course.model';
 import { InjectModel } from '@nestjs/sequelize';
+import { FilesService } from '../files/files.service';
 
 @Injectable()
 export class CourseService {
-  constructor(@InjectModel(Course) private courseRepo: typeof Course) {}
+  constructor(
+    @InjectModel(Course) private courseRepo: typeof Course,
+    private readonly fileService: FilesService,
+  ) {}
 
-  async create(createCourseDto: CreateCourseDto) {
-    const neworder = await this.courseRepo.create(createCourseDto);
-    return neworder;
+  async create(createCourseDto: CreateCourseDto, course_video: any) {
+    const fileName = await this.fileService.createFile(course_video);
+    const newcourse = await this.courseRepo.create({
+      ...createCourseDto,
+      course_video: fileName,
+    });
+    return newcourse;
   }
 
   async findAll() {

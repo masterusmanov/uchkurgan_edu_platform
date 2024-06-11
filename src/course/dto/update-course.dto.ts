@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class UpdateCourseDto {
   @IsString()
@@ -13,6 +13,6 @@ export class UpdateCourseDto {
   @IsString()
   readonly description?: string;
 
-  @IsString()
-  readonly course_price?: string;
+  @IsNumber()
+  readonly course_price?: number;
 }

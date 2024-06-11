@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateCourseDto {
   @ApiProperty({
     example: 'Household appliances',
-    description: 'Product category',
+    description: 'Course category',
   })
   @IsString()
   readonly course_category: string;
@@ -22,6 +22,6 @@ export class CreateCourseDto {
   readonly description: string;
 
   @ApiProperty({ example: 'Refrigerator', description: 'Description' })
-  @IsString()
-  readonly course_price: string;
+  @IsNumber()
+  readonly course_price: number;
 }

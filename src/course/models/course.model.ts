@@ -53,7 +53,7 @@ export class Course extends Model<Course, CourseCreateAttr> {
   description: string;
 
   @Column({
-    type: DataType.BIGINT,
+    type: DataType.INTEGER,
   })
   course_price: number;
 
