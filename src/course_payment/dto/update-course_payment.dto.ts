@@ -1,4 +1,8 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateCoursePaymentDto } from './create-course_payment.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNumber } from 'class-validator';
 
-export class UpdateCoursePaymentDto extends PartialType(CreateCoursePaymentDto) {}
+export class UpdateCoursePaymentDto {
+  @ApiProperty({ example: '500$', description: "To'lov miqdori" })
+  @IsNumber()
+  readonly payment?: number;
+}

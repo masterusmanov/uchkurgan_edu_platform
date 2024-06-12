@@ -7,31 +7,22 @@ import {
   HasMany,
 } from 'sequelize-typescript';
 import { Course } from 'src/course/models/course.model';
-import { Users } from 'src/users/models/user.model';
 
-interface CoursePaymentCreateAttr {
-  user_id: string;
-  course_id: string;
-  payment: string;
+interface TaskCreateAttr {
+  course_id: number;
+  tasks_one: string;
+  tasks_two: string;
+  tasks_three: string;
 }
 
 @Table({ tableName: 'task' })
-export class CoursePayment extends Model<
-  CoursePayment,
-  CoursePaymentCreateAttr
-> {
+export class Task extends Model<Task, TaskCreateAttr> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   })
   id: number;
-
-  @ForeignKey(() => Users)
-  @Column({
-    type: DataType.INTEGER,
-  })
-  user_id: number;
 
   @ForeignKey(() => Course)
   @Column({
@@ -40,12 +31,19 @@ export class CoursePayment extends Model<
   course_id: number;
 
   @Column({
-    type: DataType.BIGINT,
+    type: DataType.STRING,
   })
-  payment: number;
+  tasks_one: string;
 
-  @HasMany(() => Users)
-  Users: Users;
+  @Column({
+    type: DataType.STRING,
+  })
+  tasks_two: string;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  tasks_three: string;
 
   @HasMany(() => Course)
   course: Course;

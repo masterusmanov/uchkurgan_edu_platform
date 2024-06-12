@@ -7,6 +7,7 @@ import {
   HasMany
 } from 'sequelize-typescript';
 import { CoursePayment } from 'src/course_payment/models/course_payment.model';
+import { Task } from '../../tasks/models/task.model';
 
 interface CourseCreateAttr {
   course_category: string;
@@ -15,7 +16,7 @@ interface CourseCreateAttr {
   title: string;
   description: string;
   course_price: number;
-  payment_id: string;
+  payment_id: number;
 }
 
 @Table({ tableName: 'courses' })
@@ -48,7 +49,7 @@ export class Course extends Model<Course, CourseCreateAttr> {
   title: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
   })
   description: string;
 
@@ -65,4 +66,7 @@ export class Course extends Model<Course, CourseCreateAttr> {
 
   @HasMany(() => CoursePayment)
   coursepayment: CoursePayment;
+
+  @HasMany(() => Task)
+  task: Task;
 }

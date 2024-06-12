@@ -1,26 +1,54 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateCoursePaymentDto } from './dto/create-course_payment.dto';
 import { UpdateCoursePaymentDto } from './dto/update-course_payment.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { CoursePayment } from './models/course_payment.model';
 
 @Injectable()
 export class CoursePaymentService {
-  create(createCoursePaymentDto: CreateCoursePaymentDto) {
-    return 'This action adds a new coursePayment';
+  constructor(
+    @InjectModel(CoursePayment) private coursePaymentRepo: typeof CoursePayment,
+  ) {}
+
+  async create(createcoursePaymentDto: CreateCoursePaymentDto) {
+    const newcourse_payment = await this.coursePaymentRepo.create(
+      createcoursePaymentDto,
+    );
+    return newcourse_payment;
   }
 
-  findAll() {
-    return `This action returns all coursePayment`;
+  async findAll() {
+    const allcourse_payment = await this.coursePaymentRepo.findAll({
+      include: { all: true },
+    });
+    return allcourse_payment;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} coursePayment`;
+  async findOne(id: number) {
+    const onecourse_payment = await this.coursePaymentRepo.findOne({
+      where: { id },
+    });
+    return onecourse_payment;
   }
 
-  update(id: number, updateCoursePaymentDto: UpdateCoursePaymentDto) {
-    return `This action updates a #${id} coursePayment`;
+  async update(id: number, updateCoursePaymentDto: UpdateCoursePaymentDto) {
+    const upcourse_payment = await this.coursePaymentRepo.update(
+      updateCoursePaymentDto,
+      {
+        where: { id },
+        returning: true,
+      },
+    );
+    return upcourse_payment;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} coursePayment`;
+  async remove(id: number) {
+    const removecourse_payment = this.coursePaymentRepo.destroy({
+      where: { id },
+    });
+    if (!removecourse_payment) {
+      throw new HttpException("Kurs to'lovi mavjud emas", HttpStatus.NOT_FOUND);
+    }
+    return { message: "Order o'chirildi" };
   }
 }
