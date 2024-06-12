@@ -4,7 +4,7 @@ import {
   ForeignKey,
   Model,
   Table,
-  HasMany,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Course } from 'src/course/models/course.model';
 import { Users } from 'src/users/models/user.model';
@@ -50,9 +50,9 @@ export class CoursePayment extends Model<
   })
   payment_date: string;
 
-  @HasMany(() => Users)
-  users: Users;
+  @BelongsTo(() => Users)
+  user: Users;
 
-  @HasMany(() => Course)
+  @BelongsTo(() => Course)
   course: Course;
 }

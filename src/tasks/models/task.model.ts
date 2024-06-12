@@ -4,7 +4,7 @@ import {
   ForeignKey,
   Model,
   Table,
-  HasMany,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Course } from 'src/course/models/course.model';
 
@@ -45,6 +45,6 @@ export class Task extends Model<Task, TaskCreateAttr> {
   })
   tasks_three: string;
 
-  @HasMany(() => Course)
+  @BelongsTo(() => Course)
   course: Course;
 }

@@ -4,10 +4,12 @@ import {
   ForeignKey,
   Model,
   Table, 
-  HasMany
+  HasMany,
+  BelongsTo
 } from 'sequelize-typescript';
 import { CoursePayment } from 'src/course_payment/models/course_payment.model';
 import { Task } from '../../tasks/models/task.model';
+import { Users } from '../../users/models/user.model';
 
 interface CourseCreateAttr {
   course_category: string;
@@ -17,6 +19,7 @@ interface CourseCreateAttr {
   description: string;
   course_price: number;
   payment_id: number;
+  user_id: number;
 }
 
 @Table({ tableName: 'courses' })
@@ -64,9 +67,18 @@ export class Course extends Model<Course, CourseCreateAttr> {
   })
   payment_id: number;
 
+  @ForeignKey(() => Users)
+  @Column({
+    type: DataType.INTEGER,
+  })
+  user_id: number;
+
+  @BelongsTo(() => Users)
+  users: Users;
+
   @HasMany(() => CoursePayment)
-  coursepayment: CoursePayment;
+  coursepayment: CoursePayment[];
 
   @HasMany(() => Task)
-  task: Task;
+  task: Task[];
 }
