@@ -26,7 +26,6 @@ export class UsersService {
   constructor(
     @InjectModel(Users) private readonly userRepo: typeof Users,
     @InjectModel(Otp) private otpRepo: typeof Otp,
-    private readonly jwtService: JwtService,
     private readonly botService: BotService,
     private readonly fileService: FilesService,
   ) {}
