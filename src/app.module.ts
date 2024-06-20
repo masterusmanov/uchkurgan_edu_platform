@@ -17,6 +17,8 @@ import { Task } from './tasks/models/task.model';
 import { Course } from './course/models/course.model';
 import { CoursePayment } from './course_payment/models/course_payment.model';
 import { Otp } from './otp/models/otp.model';
+import { WebNameModule } from './web-name/web-name.module';
+import { WebName } from './web-name/models/web-name.model';
 
 @Module({
   imports: [
@@ -39,7 +41,7 @@ import { Otp } from './otp/models/otp.model';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [Users, Bot, Task, Course, CoursePayment, Otp],
+      models: [Users, Bot, Task, Course, CoursePayment, Otp, WebName],
       autoLoadModels: true,
       logging: false,
     }),
@@ -48,7 +50,8 @@ import { Otp } from './otp/models/otp.model';
     OtpModule,
     CourseModule,
     CoursePaymentModule,
-    TasksModule
+    TasksModule,
+    WebNameModule
   ],
   providers: [],
   exports: [],
