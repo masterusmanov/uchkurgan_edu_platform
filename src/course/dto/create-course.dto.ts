@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString, IsPositive } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateCourseDto {
   @ApiProperty({
@@ -23,5 +24,7 @@ export class CreateCourseDto {
 
   @ApiProperty({ example: 'Refrigerator', description: 'Description' })
   @IsNumber()
+  @IsPositive()
+  @Type(() => Number)
   readonly course_price: number;
 }

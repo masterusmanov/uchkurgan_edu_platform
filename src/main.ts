@@ -9,7 +9,11 @@ async function bootstrap() {
 
   const PORT = process.env.PORT || 1987;
   app.use(cookieParser());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+    whitelist: true,
+    forbidNonWhitelisted: true,
+  }));
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()

@@ -18,6 +18,7 @@ export class CourseService {
       ...createCourseDto,
       course_video: fileName,
     });
+    console.log(createCourseDto);
     return newcourse;
   }
 

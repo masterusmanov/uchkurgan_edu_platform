@@ -4,6 +4,8 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 interface WebNameAttr {
   full_name: string;
   phone: string;
+  agreeToOffer: boolean;
+  
 }
 
 @Table({ tableName: 'webName' })
@@ -29,4 +31,11 @@ export class WebName extends Model<WebName, WebNameAttr> {
     allowNull: false,
   })
   phone: string;
+
+  @ApiProperty({ example: 'Check', description: 'Rozilik bildirish' })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  agreeToOffer: boolean;
 }
