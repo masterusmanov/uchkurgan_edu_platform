@@ -7,7 +7,7 @@ import {
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Users } from './models/user.model';
-import { JwtService } from '@nestjs/jwt';
+// import { JwtService } from '@nestjs/jwt';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { v4 as uuidv4, v4 } from 'uuid';
 import * as otpGenerator from 'otp-generator';

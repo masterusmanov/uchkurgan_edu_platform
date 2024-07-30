@@ -19,6 +19,7 @@ import { CoursePayment } from './course_payment/models/course_payment.model';
 import { Otp } from './otp/models/otp.model';
 import { WebNameModule } from './web-name/web-name.module';
 import { WebName } from './web-name/models/web-name.model';
+import { CourseStudentModule } from './course_student/course_student.module';
 
 @Module({
   imports: [
@@ -51,7 +52,8 @@ import { WebName } from './web-name/models/web-name.model';
     CourseModule,
     CoursePaymentModule,
     TasksModule,
-    WebNameModule
+    WebNameModule,
+    CourseStudentModule
   ],
   providers: [],
   exports: [],
