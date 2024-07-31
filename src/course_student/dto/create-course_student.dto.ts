@@ -162,4 +162,11 @@ export class CreateCourseStudentDto {
   })
   @IsString()
   readonly employment: string;
+
+  @ApiProperty({
+    example: 'Course student Photo',
+    description: "Talabaning surati",
+  })
+  @IsString()
+  readonly course_studentPhoto: string;
 }

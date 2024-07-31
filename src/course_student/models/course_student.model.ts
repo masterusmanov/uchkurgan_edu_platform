@@ -1,8 +1,7 @@
-export class CourseStudent {}
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
-interface CourseStudentsAttr {
+interface CourseStudentAttr {
   student_id: string;
   student_name: string;
   selectSex: string;
@@ -26,10 +25,11 @@ interface CourseStudentsAttr {
   sertificate_status: string;
   sertificate: string;
   employment: string;
+  course_studentPhoto: string;
 }
 
 @Table({ tableName: 'course_Students' })
-export class CourseStudents extends Model<CourseStudents, CourseStudentsAttr> {
+export class CourseStudent extends Model<CourseStudent, CourseStudentAttr> {
   @ApiProperty({ example: '1', description: 'No_' })
   @Column({
     type: DataType.INTEGER,
@@ -123,7 +123,7 @@ export class CourseStudents extends Model<CourseStudents, CourseStudentsAttr> {
     type: DataType.STRING,
     defaultValue: false,
   })
-  end_data: string;
+  end_date: string;
 
   @ApiProperty({ example: 'Course price', description: 'Kurs narxi' })
   @Column({
@@ -207,4 +207,11 @@ export class CourseStudents extends Model<CourseStudents, CourseStudentsAttr> {
     defaultValue: false,
   })
   employment: string;
+
+  @ApiProperty({ example: 'Course student photo', description: 'O`quvchinig surati' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  course_studentPhoto: string;
 }

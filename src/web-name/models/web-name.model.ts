@@ -39,3 +39,4 @@ export class WebName extends Model<WebName, WebNameAttr> {
   })
   agreeToOffer: boolean;
 }
+
