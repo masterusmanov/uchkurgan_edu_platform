@@ -32,3 +32,4 @@ export class WebNameService {
     return await this.webNameRepo.destroy({ where: { id } });
   }
 }
+

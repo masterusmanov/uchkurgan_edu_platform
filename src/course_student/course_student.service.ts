@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCourseStudentDto } from './dto/create-course_student.dto';
 import { UpdateCourseStudentDto } from './dto/update-course_student.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { CourseStudent } from './models/course_student.model';
 
 @Injectable()
 export class CourseStudentService {
-  create(createCourseStudentDto: CreateCourseStudentDto) {
-    return 'This action adds a new courseStudent';
+  constructor(
+    @InjectModel(CourseStudent) private courseStudentRepo: typeof CourseStudent,
+  ) {}
+
+  async create(createCourseStudentDto: CreateCourseStudentDto) {
+    const courseStudentCreate = await this.courseStudentRepo.create(
+      createCourseStudentDto,
+    );
+    return courseStudentCreate;
   }
 
-  findAll() {
-    return `This action returns all courseStudent`;
+  async findAll() {
+    return await this.courseStudentRepo.findAll({ include: { all: true } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} courseStudent`;
+  async findOne(id: number) {
+    return await this.courseStudentRepo.findOne({ where: { id } });
   }
 
-  update(id: number, updateCourseStudentDto: UpdateCourseStudentDto) {
-    return `This action updates a #${id} courseStudent`;
+  async update(id: number, updateCourseStudentDto: UpdateCourseStudentDto) {
+    return await this.courseStudentRepo.update(updateCourseStudentDto, {
+      where: { id },
+      returning: true,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} courseStudent`;
+  async remove(id: number) {
+    return await this.courseStudentRepo.destroy({ where: { id } });
   }
 }

@@ -30,7 +30,7 @@ interface CourseStudentsAttr {
 
 @Table({ tableName: 'course_Students' })
 export class CourseStudents extends Model<CourseStudents, CourseStudentsAttr> {
-  @ApiProperty({ example: '1', description: 'WebName ID' })
+  @ApiProperty({ example: '1', description: 'No_' })
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -38,24 +38,173 @@ export class CourseStudents extends Model<CourseStudents, CourseStudentsAttr> {
   })
   id: number;
 
-  @ApiProperty({ example: 'John Doe', description: "To'liq ismi-sharifi" })
+  @ApiProperty({ example: '1234', description: "O'quvchining ID raqami" })
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  full_name: string;
+  student_id: string;
 
-  @ApiProperty({ example: '+998901234567', description: 'Telefon raqami' })
+  @ApiProperty({ example: 'Student name', description: 'O`quvchinig F.I.O' })
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  phone: string;
+  student_name: string;
 
-  @ApiProperty({ example: 'Check', description: 'Rozilik bildirish' })
+  @ApiProperty({ example: 'Sex', description: 'Jinsi' })
   @Column({
-    type: DataType.BOOLEAN,
+    type: DataType.STRING,
     defaultValue: false,
   })
-  agreeToOffer: boolean;
+  selectSex: string;
+
+  @ApiProperty({ example: 'Birthdate', description: 'Tug`ilgan sanasi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  birthdate: string;
+
+  @ApiProperty({
+    example: 'Identity document',
+    description: 'Shaxsni tasdiqlovchi hujjat',
+  })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  identity_document: string;
+
+  @ApiProperty({ example: 'Address', description: 'Manzili' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  address: string;
+
+  @ApiProperty({ example: 'Social status', description: 'Ijtimoiy statusi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  social_status: string;
+
+  @ApiProperty({ example: 'Phone number', description: 'Telefon raqami' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  phone_number: string;
+
+  @ApiProperty({ example: 'Course name', description: 'Kurs nomi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  course_name: string;
+
+  @ApiProperty({ example: 'Start date', description: 'Boshlanish sanasi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  start_date: string;
+
+  @ApiProperty({ example: 'Duration', description: 'Davomiyligi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  duration: string;
+
+  @ApiProperty({ example: 'End date', description: 'Tusgatish sanasi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  end_data: string;
+
+  @ApiProperty({ example: 'Course price', description: 'Kurs narxi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  course_price: string;
+
+  @ApiProperty({
+    example: 'Listener_status',
+    description: 'Tinglovchi statusi',
+  })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  listener_status: string;
+
+  @ApiProperty({ example: 'Contract', description: 'Shartnoma' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  contract: string;
+
+  @ApiProperty({ example: 'Teacher', description: 'O`qituvchi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  teacher: string;
+
+  @ApiProperty({ example: 'Group', description: 'Guruhi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  group: string;
+
+  @ApiProperty({ example: 'Days', description: 'Kunlari' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  days: string;
+
+  @ApiProperty({ example: 'Select time', description: 'Kurs boshlanish soati' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  select_time: string;
+
+  @ApiProperty({ example: 'Bootcamp', description: 'Qaysi bosqichga o`tdi' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  bootcamp: string;
+
+  @ApiProperty({
+    example: 'Certificate status',
+    description: 'Sertifikat statusi',
+  })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  sertificate_status: string;
+
+  @ApiProperty({ example: 'Certificate', description: 'Sertifikat' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  sertificate: string;
+
+  @ApiProperty({ example: 'Employment', description: 'Ish bilan ta`minlash' })
+  @Column({
+    type: DataType.STRING,
+    defaultValue: false,
+  })
+  employment: string;
 }
