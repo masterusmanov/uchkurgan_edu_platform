@@ -51,7 +51,7 @@ export class BotService {
     } else {
       await this.bot.telegram.sendChatAction(userId, 'typing');
       await ctx.reply(
-        `Bu bot orqali Stadion dasturi bilan muloqot o'rnatiladi`,
+        `Bu bot orqali online kurs dasturi bilan muloqot o'rnatiladi`,
         {
           parse_mode: 'HTML',
           ...Markup.removeKeyboard(),
