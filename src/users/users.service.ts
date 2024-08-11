@@ -18,7 +18,6 @@ import { Otp } from '../otp/models/otp.model';
 import { Op } from 'sequelize';
 import { dates, decode, encode } from '../helpers/crypto';
 import { VerifyOtpDto } from './dto/verifyOtp.dto';
-import { FilesService } from '../files/files.service';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
@@ -27,7 +26,6 @@ export class UsersService {
     @InjectModel(Users) private readonly userRepo: typeof Users,
     @InjectModel(Otp) private otpRepo: typeof Otp,
     private readonly botService: BotService,
-    private readonly fileService: FilesService,
   ) {}
 
   async newOTP(phoneUserDto: PhoneUserDto) {
@@ -118,12 +116,8 @@ export class UsersService {
     }
   }
 
-  async create(createUserDto: CreateUserDto, user_photo: any) {
-    const fileName = await this.fileService.createFile(user_photo);
-    const post = await this.userRepo.create({
-      ...createUserDto,
-      user_photo: fileName,
-    });
+  async create(createUserDto: CreateUserDto) {
+    const post = await this.userRepo.create(createUserDto);
     return post;
   }
 

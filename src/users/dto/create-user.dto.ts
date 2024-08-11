@@ -22,6 +22,14 @@ export class CreateUserDto {
   readonly last_name: string;
 
   @ApiProperty({
+    example: 'users-photo',
+    description: 'Foydalanuvchi surati',
+  })
+  @IsNotEmpty()
+  @IsString()
+  readonly user_photo: string;
+
+  @ApiProperty({
     example: '912345678',
     description: 'Foydalanuvchi telefon raqami',
   })
