@@ -31,12 +31,5 @@ export class WebName extends Model<WebName, WebNameAttr> {
     allowNull: false,
   })
   phone: string;
-
-  @ApiProperty({ example: 'Check', description: 'Rozilik bildirish' })
-  @Column({
-    type: DataType.BOOLEAN,
-    defaultValue: false,
-  })
-  agreeToOffer: boolean;
 }
 
